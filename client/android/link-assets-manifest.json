@@ -1,0 +1,33 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/ChivoMono-SemiBold.ttf",
+      "sha1": "2847ac881d87e2b5a7da87190ee0c509dce11637"
+    },
+    {
+      "path": "assets/fonts/UbuntuSans-Bold.ttf",
+      "sha1": "1ae16c2add80e616cad5c4b5e5f8bd9a3b197269"
+    },
+    {
+      "path": "assets/fonts/UbuntuSans-ExtraBold.ttf",
+      "sha1": "0cbc29f8f01530d41774410ed4c97b757c01d745"
+    },
+    {
+      "path": "assets/fonts/UbuntuSans-Light.ttf",
+      "sha1": "ef28091dcef2a6c212f0b6f77daf9fa8c7775fa8"
+    },
+    {
+      "path": "assets/fonts/UbuntuSans-Medium.ttf",
+      "sha1": "4381e03dc6e56a3cbf2b3ed48094858e3bb6b326"
+    },
+    {
+      "path": "assets/fonts/UbuntuSans-Regular.ttf",
+      "sha1": "43732884acc7651b9471073b443d7a5cb9b6c695"
+    },
+    {
+      "path": "assets/fonts/UbuntuSans-SemiBold.ttf",
+      "sha1": "dcbe09e9365aefd4bf937f8e3efedb47feec13f8"
+    }
+  ]
+}
