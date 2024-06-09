@@ -1,4 +1,4 @@
-import React, {useState, useMemo, ReactNode, useEffect} from 'react';
+import {useState, useMemo, ReactNode, useEffect} from 'react';
 import ThemeContext from '../context/ThemeContext';
 import {Theme} from '../types';
 import {useColorScheme} from 'react-native';

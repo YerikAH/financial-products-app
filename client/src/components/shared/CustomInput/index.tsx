@@ -1,16 +1,9 @@
 import {StyleSheet, Text, TextInput, View} from 'react-native';
-import React from 'react';
 import {Control, Controller} from 'react-hook-form';
-import {
-  charade,
-  eastBay,
-  getDynamicStyles,
-  red,
-  woodsmoke,
-} from '../../../colors';
-import {useTheme} from '../../../context/ThemeContext';
+import {charade, eastBay, red, woodsmoke} from '../../../colors';
+import {useThemedStyles} from '../../../hooks';
 
-interface CustomInputProps {
+interface Props {
   name: string;
   label: string;
   placeholder: string;
@@ -18,20 +11,18 @@ interface CustomInputProps {
   rules: any;
   errorMessage?: string;
 }
-export const CustomInput: React.FC<CustomInputProps> = ({
+export const CustomInput = ({
   name,
   label,
   placeholder,
   control,
   rules,
   errorMessage,
-}: CustomInputProps) => {
-  const {theme} = useTheme();
-  const isDarkMode = theme === 'dark';
-  const dynamicStyles = getDynamicStyles(isDarkMode);
+}: Props) => {
+  const {dynamicStyles, isDarkMode} = useThemedStyles();
   const dynamicBorderColor = {
     borderColor: errorMessage
-      ? red[600]
+      ? red[700]
       : isDarkMode
       ? woodsmoke[700]
       : charade[200],

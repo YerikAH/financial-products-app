@@ -1,11 +1,11 @@
-import React from 'react';
 import {StyleSheet, Text, TouchableHighlight} from 'react-native';
 import {candlelight, charade} from '../../../colors';
 
-interface CustomButtonProps {
+interface Props {
   text: string;
   backgroundColor?: string;
   activeBackgroundColor?: string;
+  textColor?: string;
   action: () => void;
 }
 export const CustomButton = ({
@@ -13,7 +13,8 @@ export const CustomButton = ({
   backgroundColor,
   action,
   activeBackgroundColor,
-}: CustomButtonProps) => {
+  textColor,
+}: Props) => {
   return (
     <TouchableHighlight
       style={[
@@ -24,7 +25,9 @@ export const CustomButton = ({
       ]}
       underlayColor={activeBackgroundColor ?? candlelight[400]}
       onPress={action}>
-      <Text style={styles.textButton}>{text}</Text>
+      <Text style={[styles.textButton, {color: textColor ?? charade[950]}]}>
+        {text}
+      </Text>
     </TouchableHighlight>
   );
 };
@@ -37,7 +40,6 @@ const styles = StyleSheet.create({
   },
   textButton: {
     fontSize: 14,
-    color: charade[950],
     fontFamily: 'UbuntuSans-Medium',
     textAlign: 'center',
   },

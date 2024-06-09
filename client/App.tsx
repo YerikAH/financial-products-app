@@ -1,20 +1,14 @@
-import React from 'react';
-import {SafeAreaView} from 'react-native';
 import ThemeProvider from './src/providers/ThemeProvider';
 import AppNavigator from './src/navigation/AppNavigator';
-
-//Hola mundo
+import {Providers} from './src/redux/providers';
 
 function App(): React.JSX.Element {
   return (
-    <ThemeProvider>
-      <SafeAreaView
-        style={{
-          height: '100%',
-        }}>
+    <Providers>
+      <ThemeProvider>
         <AppNavigator />
-      </SafeAreaView>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Providers>
   );
 }
 

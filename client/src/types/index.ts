@@ -7,3 +7,8 @@ export type FormData = {
   release: string;
   review: string;
 };
+export type ErrorFetch = {
+  error: boolean;
+  message: string;
+  status: number;
+};
