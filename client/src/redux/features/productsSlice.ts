@@ -1,15 +1,27 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {ErrorFetch} from '../../types';
 import {Product} from '../../models/data';
 
 interface State {
   products: Product[];
   saveProducts: Product[];
+  product: Product;
   loader: boolean;
-  error: ErrorFetch;
+  error: {
+    status: number;
+    message: string;
+    error: boolean;
+  };
 }
 const initialState: State = {
   products: [],
+  product: {
+    date_release: '',
+    date_revision: '',
+    description: '',
+    id: '',
+    logo: '',
+    name: '',
+  },
   saveProducts: [],
   loader: false,
   error: {
@@ -23,7 +35,7 @@ export const ProductsSlice = createSlice({
   initialState: initialState,
   reducers: {
     setError: (state, action) => {
-      const newError = action.payload as ErrorFetch;
+      const newError = action.payload;
       state.error = newError;
     },
     setLoader: (state, action) => {
@@ -35,8 +47,13 @@ export const ProductsSlice = createSlice({
       state.products = newProducts;
       state.saveProducts = newProducts;
     },
+    setProduct: (state, action) => {
+      const newProduct = action.payload;
+      state.product = newProduct;
+    },
   },
 });
 
-export const {setError, setLoader, setProducts} = ProductsSlice.actions;
+export const {setError, setLoader, setProducts, setProduct} =
+  ProductsSlice.actions;
 export default ProductsSlice.reducer;

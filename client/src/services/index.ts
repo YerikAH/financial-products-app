@@ -37,6 +37,18 @@ export const createProduct = async (
   }
 };
 
+export const updateProduct = async (
+  body: Product,
+): Promise<AxiosResponse | AxiosError> => {
+  try {
+    const id = body.id;
+    const response: AxiosResponse = await api.put(`/products/${id}`, body);
+    return response;
+  } catch (error) {
+    return error as AxiosError;
+  }
+};
+
 export const deleteProduct = async (
   id: string,
 ): Promise<AxiosResponse | AxiosError> => {

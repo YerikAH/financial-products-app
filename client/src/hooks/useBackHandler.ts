@@ -1,13 +1,19 @@
 import {useEffect} from 'react';
 import {BackHandler} from 'react-native';
-import {Routes} from '../navigation/routes';
+import {RootStackParamList, Routes} from '../navigation/routes';
 import {useAppNavigation} from './useAppNavigation';
 
-export const useBackHandler = (route?: Routes) => {
+export const useBackHandler = <T extends keyof RootStackParamList>(
+  route: Routes,
+  params?: RootStackParamList[T],
+) => {
   const {navigateTo} = useAppNavigation();
   useEffect(() => {
     const backAction = () => {
-      if (route !== undefined) {
+      if (params !== undefined) {
+        navigateTo(route, params);
+        return true;
+      } else {
         navigateTo(route);
         return true;
       }

@@ -1,6 +1,6 @@
 import {PageLayout} from '../../components/shared';
 import {ProductAddButton, ProductBrowser} from '../../components/Home';
-import {useInitialize} from '../../hooks/useInitialize';
+import {useInitialize} from '../../hooks/';
 import {useEffect} from 'react';
 
 export function Home() {

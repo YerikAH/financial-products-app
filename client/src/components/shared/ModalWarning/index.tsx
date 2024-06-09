@@ -11,6 +11,7 @@ interface Props {
   message: string;
   buttonBgColor?: string;
   activeButtonBgColor?: string;
+  textColorButton?: string;
 }
 
 export const ModalWarning = ({
@@ -20,6 +21,7 @@ export const ModalWarning = ({
   message,
   buttonBgColor,
   activeButtonBgColor,
+  textColorButton,
 }: Props) => {
   const {dynamicStyles, isDarkMode} = useThemedStyles();
   return (
@@ -48,6 +50,7 @@ export const ModalWarning = ({
               text="Continuar"
               backgroundColor={buttonBgColor}
               activeBackgroundColor={activeButtonBgColor}
+              textColor={textColorButton}
             />
           </View>
         </View>

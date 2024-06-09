@@ -16,13 +16,26 @@ interface Props {
   logoDark?: ImageSourcePropType;
   isDarkMode: boolean;
   routeBack?: Routes;
+  routeParams?: any;
 }
 
-export const Header = ({logoLigth, logoDark, isDarkMode, routeBack}: Props) => {
+export const Header = ({
+  logoLigth,
+  logoDark,
+  isDarkMode,
+  routeBack,
+  routeParams,
+}: Props) => {
   const dynamicStyles = getDynamicStyles(isDarkMode);
   const logo = isDarkMode ? logoDark ?? logoLigth : logoLigth;
   const {navigateTo} = useAppNavigation();
-  const routeBackTo = () => navigateTo(routeBack as Routes);
+  const routeBackTo = () => {
+    if (routeParams !== undefined) {
+      navigateTo(routeBack!, routeParams);
+    } else {
+      navigateTo(routeBack!);
+    }
+  };
   return (
     <>
       <CustomStatusBar dynamicStyles={dynamicStyles} isDarkMode={isDarkMode} />

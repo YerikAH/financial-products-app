@@ -1,6 +1,7 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {useThemedStyles} from '../../../../hooks';
 import {Product} from '../../../../models/data';
+import {FallbackImage} from '../../../shared';
 
 export const ProductDetailContainer = ({
   date_release,
@@ -48,17 +49,15 @@ export const ProductDetailContainer = ({
         </View>
         <View style={styles.container}>
           <Text style={[styles.label, dynamicStyles.color]}>Logo</Text>
-          <Image
-            style={styles.image}
-            source={{
-              uri: logo,
-            }}
-          />
+          <View style={styles.image}>
+            <FallbackImage uri={logo} />
+          </View>
         </View>
       </View>
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   containerDetail: {
     paddingBottom: 200,
@@ -93,5 +92,6 @@ const styles = StyleSheet.create({
     height: 150,
     objectFit: 'cover',
     borderRadius: 8,
+    overflow: 'hidden',
   },
 });

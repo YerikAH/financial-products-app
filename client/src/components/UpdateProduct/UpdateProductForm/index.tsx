@@ -4,7 +4,7 @@ import {CustomInput, ModalLoader, ModalWarning} from '../../shared';
 import {FieldErrors, SubmitHandler, useForm} from 'react-hook-form';
 import inputFields from './inputFields';
 import {Product} from '../../../models/data';
-import {createProduct} from '../../../services';
+import {updateProduct} from '../../../services';
 import {red} from '../../../colors';
 import {FormActions} from './FormActions';
 import {
@@ -13,20 +13,16 @@ import {
   useThemedStyles,
   useInitialize,
 } from '../../../hooks';
+import {useRoute} from '@react-navigation/native';
+import {useAppSelector} from '../../../redux/hook';
 
-const defaultValues = {
-  id: '',
-  name: '',
-  description: '',
-  logo: '',
-  date_release: '',
-  date_revision: '',
-};
-
-export const CreateProductForm = () => {
+export const UpdateProductForm = () => {
   const {dynamicStyles} = useThemedStyles();
   const initialize = useInitialize();
-  const {data, error, fetchData, loader} = useFetch(createProduct);
+  const {product} = useAppSelector(state => state.productsReducer);
+  const route = useRoute();
+  const {id}: {id?: string} = route.params ?? {};
+  const {data, error, fetchData, loader} = useFetch(updateProduct);
   const {open, toggleOpen, updateProps, props} = useModalWarning();
   const {
     control,
@@ -34,15 +30,15 @@ export const CreateProductForm = () => {
     formState: {errors},
     reset,
   } = useForm<Product>({
-    defaultValues,
+    defaultValues: product,
   });
 
   const onSubmit: SubmitHandler<Product> = dataForm => {
-    fetchData(dataForm);
+    fetchData({...dataForm, id});
     handleReset();
   };
   const handleSubmitForm = handleSubmit(onSubmit);
-  const handleReset = () => reset(defaultValues);
+  const handleReset = () => reset(product);
 
   useEffect(() => {
     if (error.error && !loader) {
@@ -51,14 +47,15 @@ export const CreateProductForm = () => {
         activeButtonBgColor: red[600],
         message: `¡Oops! Algo salió mal. El servidor respondió con un error [${error.status}]. Detalles: [${error.message}].`,
         title: 'Sucedio un error',
+        textColorButton: '#fff',
       };
       updateProps(newProps);
     } else if (!error.error && !loader && data !== null) {
       const newProps = {
         buttonBgColor: '#16a34a',
         activeButtonBgColor: '#22c55e',
-        message: 'Tu producto se ha creado correctamente.',
-        title: 'Producto creado exitosamente',
+        message: 'Tu producto se ha actualizado correctamente.',
+        title: 'Producto actualizado exitosamente',
       };
       updateProps(newProps);
       initialize();
@@ -73,14 +70,15 @@ export const CreateProductForm = () => {
         activeButtonBgColor={props.activeButtonBgColor}
         message={props.message}
         title={props.title}
+        textColorButton={props.textColorButton}
       />
       <ModalLoader
         open={loader}
-        title="Creando producto"
-        message="Estamos craendo tu producto, esto toará un momento"
+        title="Actualizando producto"
+        message="Estamos actualizando tu producto, esto toará un momento"
       />
       <Text style={[styles.title, dynamicStyles.color]}>
-        Formulario de Registro
+        Formulario de Actualización
       </Text>
       <View style={styles.inputsContainer}>
         {inputFields.map(field => {

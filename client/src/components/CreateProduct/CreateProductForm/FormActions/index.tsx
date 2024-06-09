@@ -1,5 +1,5 @@
-import {FloatingGroupButton} from '../../shared';
-import {charade} from '../../../colors';
+import {FloatingGroupButton} from '../../../shared';
+import {charade} from '../../../../colors';
 
 interface Props {
   handleReset: () => void;

@@ -1,19 +1,17 @@
 import {Modal, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
-import {CustomButton} from '../../../shared';
+import {CustomButton, ModalLoader, ModalWarning} from '../../../shared';
 import {XMarkIcon} from 'react-native-heroicons/outline';
 import {charade, red, woodsmoke} from '../../../../colors';
 import {deleteProduct} from '../../../../services';
 import {useEffect} from 'react';
-import {useInitialize} from '../../../../hooks/useInitialize';
 import {Routes} from '../../../../navigation/routes';
 import {
   useAppNavigation,
   useFetch,
   useModalWarning,
   useThemedStyles,
+  useInitialize,
 } from '../../../../hooks';
-import {ModalLoader} from '../../../shared/ModalLoader';
-import {ModalWarning} from '../../../shared/ModalWarning';
 
 interface Props {
   open: boolean;

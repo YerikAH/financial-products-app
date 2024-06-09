@@ -1,6 +1,3 @@
-import {AxiosError} from 'axios';
-import {verificateIdProduct} from '../../../services';
-
 interface InputField {
   label: string;
   name: string;
@@ -18,34 +15,6 @@ interface InputField {
 }
 
 const inputFields: InputField[] = [
-  {
-    label: 'Ingrese el ID:',
-    name: 'id',
-    placeholder: 'Ej. nuevo-id',
-    rules: {
-      required: 'El ID es requerido',
-      minLength: {value: 3, message: 'El ID debe tener al menos 3 caracteres'},
-      maxLength: {
-        value: 10,
-        message: 'El ID no debe tener más de 10 caracteres',
-      },
-      validate: async (value: string) => {
-        try {
-          const res = await verificateIdProduct(value);
-          if (res instanceof AxiosError) {
-            throw res;
-          }
-          if (res.data) {
-            return 'Este ID ya existe';
-          }
-          return true;
-        } catch (error) {
-          console.log('Error', error);
-          return 'Sucedio un error en el servidor. Vuelve a intentarlo';
-        }
-      },
-    },
-  },
   {
     label: 'Ingresa el nombre del producto:',
     name: 'name',

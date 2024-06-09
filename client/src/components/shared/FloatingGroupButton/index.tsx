@@ -35,7 +35,6 @@ export const FloatingGroupButton = ({buttons}: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 32,
     paddingVertical: 32,
     position: 'relative',
     bottom: 0,

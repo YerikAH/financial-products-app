@@ -1,6 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {CreateProduct, Home, ProductDetail} from '../screens';
+import {CreateProduct, Home, ProductDetail, UpdateProduct} from '../screens';
 import {RootStackParamList, Routes} from './routes';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -16,6 +16,7 @@ export default function AppNavigator() {
         initialRouteName={Routes.Home}>
         <Stack.Screen name={Routes.Home} component={Home} />
         <Stack.Screen name={Routes.CreateProduct} component={CreateProduct} />
+        <Stack.Screen name={Routes.UpdateProduct} component={UpdateProduct} />
         <Stack.Screen name={Routes.ProductDetail} component={ProductDetail} />
       </Stack.Navigator>
     </NavigationContainer>

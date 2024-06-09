@@ -1,3 +1,6 @@
+export {FallbackImage} from './FallbackImage';
+export {ModalLoader} from './ModalLoader';
+export {ModalWarning} from './ModalWarning';
 export {Skeleton} from './Skeleton';
 export {AlertMessages} from './AlertMessages';
 export {FloatingGroupButton} from './FloatingGroupButton';

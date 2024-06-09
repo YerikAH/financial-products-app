@@ -6,8 +6,9 @@ import {Routes} from '../../../navigation/routes';
 interface Props {
   children: JSX.Element;
   routeBack?: Routes;
+  routeParams?: any;
 }
-export const PageLayout = ({children, routeBack}: Props) => {
+export const PageLayout = ({children, routeBack, routeParams}: Props) => {
   const {isDarkMode, dynamicStyles} = useThemedStyles();
 
   return (
@@ -17,6 +18,7 @@ export const PageLayout = ({children, routeBack}: Props) => {
         logoDark={require('../../../../assets/images/logo-dark.png')}
         isDarkMode={isDarkMode}
         routeBack={routeBack}
+        routeParams={routeParams}
       />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
