@@ -9,6 +9,7 @@ export function Home() {
   useEffect(() => {
     initialize();
   }, []);
+
   return (
     <>
       <PageLayout>

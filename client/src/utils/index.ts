@@ -3,6 +3,7 @@ export function getErrorMessage(status: number) {
     [key: number]: string;
   };
   const errorMessages: ErrorMessages = {
+    0: 'Para usar la aplicación, se requiere una conexión a internet.',
     400: 'Hubo un problema con la solicitud. Por favor, verifica los datos enviados y vuelve a intentarlo.',
     401: 'No tienes autorización para acceder a este recurso. Por favor, inicia sesión y vuelve a intentarlo.',
     403: 'No tienes permiso para realizar esta acción. Si crees que esto es un error, contacta al administrador.',

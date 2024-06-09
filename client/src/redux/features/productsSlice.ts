@@ -31,7 +31,7 @@ const initialState: State = {
   },
 };
 export const ProductsSlice = createSlice({
-  name: 'links',
+  name: 'products',
   initialState: initialState,
   reducers: {
     setError: (state, action) => {
@@ -51,9 +51,18 @@ export const ProductsSlice = createSlice({
       const newProduct = action.payload;
       state.product = newProduct;
     },
+    filterByName: (state, action) => {
+      const name = action.payload as string;
+      state.saveProducts = state.products;
+      const filterProducts = state.saveProducts.filter(product => {
+        const productName = product.name.toLowerCase();
+        return productName.includes(name.toLowerCase());
+      });
+      state.saveProducts = filterProducts;
+    },
   },
 });
 
-export const {setError, setLoader, setProducts, setProduct} =
+export const {setError, setLoader, setProducts, setProduct, filterByName} =
   ProductsSlice.actions;
 export default ProductsSlice.reducer;

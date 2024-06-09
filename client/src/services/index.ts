@@ -1,8 +1,9 @@
 import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import {Product} from '../models/data';
+import config from '../config';
 
 const api: AxiosInstance = axios.create({
-  baseURL: 'http://192.168.1.30:3002/bp',
+  baseURL: config.apiUrl,
   timeout: 10000,
 });
 

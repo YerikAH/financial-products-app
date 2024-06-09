@@ -1,7 +1,8 @@
 import {ScrollView, StyleSheet} from 'react-native';
 import {Header} from '../Header';
-import {useThemedStyles} from '../../../hooks';
+import {useIsConnected, useThemedStyles} from '../../../hooks';
 import {Routes} from '../../../navigation/routes';
+import {ModalLoader} from '../ModalLoader';
 
 interface Props {
   children: JSX.Element;
@@ -10,9 +11,15 @@ interface Props {
 }
 export const PageLayout = ({children, routeBack, routeParams}: Props) => {
   const {isDarkMode, dynamicStyles} = useThemedStyles();
+  const isConnected = useIsConnected();
 
   return (
     <>
+      <ModalLoader
+        open={!isConnected}
+        message="No hay conexión a internet disponible. Por favor, verifica tu conexión."
+        title="Conexión Perdida"
+      />
       <Header
         logoLigth={require('../../../../assets/images/logo.png')}
         logoDark={require('../../../../assets/images/logo-dark.png')}

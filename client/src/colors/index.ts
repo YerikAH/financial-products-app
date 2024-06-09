@@ -4,7 +4,6 @@ export const charade = {
   '50': '#f6f7f9',
   '100': '#ecedf2',
   '200': '#d4d7e3',
-  '300': '#afb5ca',
   '400': '#838dad',
   '500': '#646f93',
   '600': '#4f587a',
@@ -54,18 +53,15 @@ export const candlelight = {
   '950': '#442704',
 };
 export const red = {
-  '50': '#fff0f0',
-  '100': '#ffdede',
-  '200': '#ffc3c3',
-  '300': '#ff9999',
-  '400': '#ff5f5f',
   '500': '#ff2d2d',
   '600': '#f50d0d',
   '700': '#d50707',
-  '800': '#aa0a0a',
-  '900': '#8c1010',
-  '950': '#4d0202',
 };
+export const green = {
+  '500': '#16a34a',
+  '600': '#22c55e',
+};
+export const white = '#fff';
 
 export const getDynamicStyles = (isDarkMode: boolean) => {
   return StyleSheet.create({

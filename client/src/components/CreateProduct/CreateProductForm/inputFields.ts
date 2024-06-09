@@ -40,7 +40,6 @@ const inputFields: InputField[] = [
           }
           return true;
         } catch (error) {
-          console.log('Error', error);
           return 'Sucedio un error en el servidor. Vuelve a intentarlo';
         }
       },
@@ -118,7 +117,6 @@ const inputFields: InputField[] = [
       required: 'La fecha de revisión es requerida',
       validate: (value: string, allValues: any) => {
         const releaseDate = new Date(allValues.date_release);
-        console.log(releaseDate);
         const reviewDate = new Date(value);
         const oneYearLater = new Date(
           releaseDate.setFullYear(releaseDate.getFullYear() + 1),

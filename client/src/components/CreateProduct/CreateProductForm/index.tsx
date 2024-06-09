@@ -5,7 +5,7 @@ import {FieldErrors, SubmitHandler, useForm} from 'react-hook-form';
 import inputFields from './inputFields';
 import {Product} from '../../../models/data';
 import {createProduct} from '../../../services';
-import {red} from '../../../colors';
+import {green, red, white} from '../../../colors';
 import {FormActions} from './FormActions';
 import {
   useFetch,
@@ -51,12 +51,13 @@ export const CreateProductForm = () => {
         activeButtonBgColor: red[600],
         message: `¡Oops! Algo salió mal. El servidor respondió con un error [${error.status}]. Detalles: [${error.message}].`,
         title: 'Sucedio un error',
+        textColorButton: white,
       };
       updateProps(newProps);
     } else if (!error.error && !loader && data !== null) {
       const newProps = {
-        buttonBgColor: '#16a34a',
-        activeButtonBgColor: '#22c55e',
+        buttonBgColor: green[600],
+        activeButtonBgColor: green[500],
         message: 'Tu producto se ha creado correctamente.',
         title: 'Producto creado exitosamente',
       };
@@ -73,6 +74,7 @@ export const CreateProductForm = () => {
         activeButtonBgColor={props.activeButtonBgColor}
         message={props.message}
         title={props.title}
+        textColorButton={props.textColorButton}
       />
       <ModalLoader
         open={loader}
