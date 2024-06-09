@@ -1,10 +1,14 @@
 import {useState} from 'react';
 import {AxiosError, AxiosResponse} from 'axios';
-import {ErrorFetch} from '../types';
 
 type FetchFunction = (args?: any) => Promise<AxiosResponse | AxiosError>;
 
-const initError: ErrorFetch = {
+interface Error {
+  error: boolean;
+  message: string;
+  status: number;
+}
+const initError: Error = {
   error: false,
   message: '',
   status: 0,
@@ -12,7 +16,7 @@ const initError: ErrorFetch = {
 
 export const useFetch = (method: FetchFunction) => {
   const [data, setData] = useState<any>(null);
-  const [error, setError] = useState<ErrorFetch>(initError);
+  const [error, setError] = useState<Error>(initError);
   const [loader, setLoader] = useState(false);
 
   const fetchData = async (body?: unknown) => {

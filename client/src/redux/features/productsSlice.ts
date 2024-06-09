@@ -1,9 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {ErrorFetch} from '../../types';
+import {Product} from '../../models/data';
 
 interface State {
-  products: [];
-  saveProducts: [];
+  products: Product[];
+  saveProducts: Product[];
   loader: boolean;
   error: ErrorFetch;
 }

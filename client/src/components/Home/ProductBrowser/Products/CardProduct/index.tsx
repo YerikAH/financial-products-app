@@ -7,17 +7,21 @@ import {useAppNavigation, useThemedStyles} from '../../../../../hooks';
 interface Props {
   name: string;
   id: string;
+  last?: boolean;
 }
-export const CardProduct = ({name, id}: Props) => {
+export const CardProduct = ({name, id, last}: Props) => {
   const {dynamicStyles, isDarkMode} = useThemedStyles();
   const {navigateTo} = useAppNavigation();
   const handleProduct = () => {
-    navigateTo(Routes.ProductDetail, {id: '123'});
+    navigateTo(Routes.ProductDetail, {id: id});
   };
-
   return (
     <TouchableHighlight
-      style={[styles.card, dynamicStyles.card]}
+      style={[
+        styles.card,
+        dynamicStyles.card,
+        {borderBottomWidth: !last ? 1 : 0},
+      ]}
       underlayColor={isDarkMode ? woodsmoke[900] : charade[100]}
       onPress={handleProduct}>
       <>
@@ -42,7 +46,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
-    borderBottomWidth: 1,
   },
   title: {
     fontFamily: 'UbuntuSans-SemiBold',

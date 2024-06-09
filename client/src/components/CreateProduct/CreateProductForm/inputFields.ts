@@ -1,3 +1,6 @@
+import {AxiosError} from 'axios';
+import {verificateIdProduct} from '../../../services';
+
 interface InputField {
   label: string;
   name: string;
@@ -26,16 +29,25 @@ const inputFields: InputField[] = [
         message: 'El ID no debe tener más de 10 caracteres',
       },
       validate: async (value: string) => {
-        if (value === 'existente') {
-          return 'Este ID ya existe';
+        try {
+          const res = await verificateIdProduct(value);
+          if (res instanceof AxiosError) {
+            throw res;
+          }
+          if (res.data) {
+            return 'Este ID ya existe';
+          }
+          return true;
+        } catch (error) {
+          console.log('Error', error);
+          return 'Sucedio un error en el servidor. Vuelve a intentarlo';
         }
-        return true;
       },
     },
   },
   {
     label: 'Ingresa el nombre del producto:',
-    name: 'product',
+    name: 'name',
     placeholder: 'Ej. Tarjeta Crédito',
     rules: {
       required: 'El nombre del producto es requerido',
@@ -67,7 +79,7 @@ const inputFields: InputField[] = [
   },
   {
     label: 'Ingresa la imagen del producto:',
-    name: 'image',
+    name: 'logo',
     placeholder: 'Ej. https://imagen.com',
     rules: {
       required: 'La URL de la imagen es requerida',
@@ -75,13 +87,16 @@ const inputFields: InputField[] = [
   },
   {
     label: 'Ingrese la fecha de liberación:',
-    name: 'release',
-    placeholder: 'Ej. 22/02/2023',
+    name: 'date_release',
+    placeholder: 'Ej. 2024-08-07',
     rules: {
       required: 'La fecha de liberación es requerida',
       validate: (value: string) => {
         const releaseDate = new Date(value);
         const currentDate = new Date();
+        if (isNaN(releaseDate.getTime())) {
+          return 'La fecha de liberación no es válida';
+        }
         if (releaseDate < currentDate) {
           return 'La fecha de liberación debe ser igual o mayor a la fecha actual';
         }
@@ -91,16 +106,20 @@ const inputFields: InputField[] = [
   },
   {
     label: 'Ingrese la fecha de revisión:',
-    name: 'review',
-    placeholder: 'Ej. 22/02/2024',
+    name: 'date_revision',
+    placeholder: 'Ej. 2024-08-07',
     rules: {
       required: 'La fecha de revisión es requerida',
       validate: (value: string, allValues: any) => {
-        const releaseDate = new Date(allValues.release);
+        const releaseDate = new Date(allValues.date_release);
+        console.log(releaseDate);
         const reviewDate = new Date(value);
         const oneYearLater = new Date(
           releaseDate.setFullYear(releaseDate.getFullYear() + 1),
         );
+        if (isNaN(reviewDate.getTime())) {
+          return 'La fecha de liberación no es válida';
+        }
         if (reviewDate.getTime() !== oneYearLater.getTime()) {
           return 'La fecha de revisión debe ser exactamente un año posterior a la fecha de liberación';
         }

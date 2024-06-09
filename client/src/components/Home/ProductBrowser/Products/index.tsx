@@ -4,22 +4,12 @@ import {useThemedStyles} from '../../../../hooks';
 import {useAppSelector} from '../../../../redux/hook';
 import {AlertMessages, Skeleton} from '../../../shared';
 import {BugAntIcon, FolderIcon} from 'react-native-heroicons/solid';
-import {useEffect, useState} from 'react';
 
 export const Products = () => {
   const {dynamicStyles} = useThemedStyles();
   const {loader, products, error} = useAppSelector(
     state => state.productsReducer,
   );
-  const [hasLoaded, setHasLoaded] = useState(false);
-
-  useEffect(() => {
-    if (!loader && !hasLoaded) {
-      setHasLoaded(true);
-    } else {
-      setHasLoaded(false);
-    }
-  }, [loader]);
   return (
     <>
       {loader && !error.error && (
@@ -32,7 +22,7 @@ export const Products = () => {
           text={`¡Oops! Algo salió mal. El servidor respondió con un error [${error.status}]. Detalles: [${error.message}].`}
         />
       )}
-      {!loader && !error.error && products.length === 0 && !hasLoaded && (
+      {!loader && !error.error && products.length === 0 && (
         <AlertMessages
           icon={FolderIcon}
           title="No se encontraron productos"
@@ -41,8 +31,13 @@ export const Products = () => {
       )}
       {!loader && !error.error && products.length > 0 && (
         <View style={[styles.containerProducts, dynamicStyles.card]}>
-          {products.map(item => (
-            <CardProduct key={item.id} id={item.id} name={item.name} />
+          {products.map((item, idx) => (
+            <CardProduct
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              last={idx === products.length - 1}
+            />
           ))}
         </View>
       )}

@@ -8,7 +8,6 @@ import {Routes} from '../../navigation/routes';
 
 export const ProductDetail = () => {
   useBackHandler(Routes.Home);
-
   return (
     <>
       <PageLayout routeBack={Routes.Home}>

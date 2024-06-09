@@ -1,13 +1,13 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {CustomInput} from '../../shared';
 import {Control, FieldErrors} from 'react-hook-form';
-import {FormData} from '../../../types';
 import inputFields from './inputFields';
 import {useThemedStyles} from '../../../hooks';
+import {Product} from '../../../models/data';
 
 interface Props {
-  control: Control<FormData>;
-  errors: FieldErrors<FormData>;
+  control: Control<Product>;
+  errors: FieldErrors<Product>;
 }
 
 export const CreateProductForm = ({control, errors}: Props) => {
@@ -19,7 +19,7 @@ export const CreateProductForm = ({control, errors}: Props) => {
       </Text>
       <View style={styles.inputsContainer}>
         {inputFields.map(field => {
-          const keyField = field.name as keyof FieldErrors<FormData>;
+          const keyField = field.name as keyof FieldErrors<Product>;
           return (
             <CustomInput
               key={field.name}
